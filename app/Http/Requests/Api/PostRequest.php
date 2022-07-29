@@ -24,7 +24,14 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if ($value === 'foo') {
+                        $fail('The '.$attribute.' is invalid.');
+                    }
+                },
+            ],
         ];
     }
 }
